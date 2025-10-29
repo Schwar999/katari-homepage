@@ -162,7 +162,7 @@ const translations = {
         navPricing: "料金",
         navContact: "お問い合わせ",
         downloadApp: "アプリをダウンロード",
-        heroTitle: "詳細な説明で<br>言語をマスター",
+        heroTitle: "説明する力を鍛えて<br>言語をマスター",
         heroSubtitle: "カジュアルな会話スキルをプロフェッショナルなコミュニケーション力に変換。AIフィードバックで複雑なアイデアを表現する練習ができます。",
         getOnGooglePlay: "Google Playで入手",
         androidOnly: "現在Androidデバイスで利用可能",
@@ -191,7 +191,7 @@ const translations = {
         step2Title: "考えを整理する",
         step2Desc: "目標言語で表現する前に、母国語でメモを取り要点を構造化します",
         step3Title: "目標言語で表現する",
-        step3Desc: "音声認識サポートで、学習中の言語で詳細な説明をタイプまたは話します",
+        step3Desc: "音声認識サポートで、学習中の言語で話せます",
         step4Title: "フィードバックを受けて自己評価する",
         step4Desc: "AIの提案を確認し、自分のパフォーマンスを評価して学習を加速させます",
         
@@ -304,7 +304,7 @@ const translations = {
         footerProduct: "製品",
         footerLegal: "法的情報",
         footerDownload: "ダウンロード",
-        footerTagline: "詳細な説明で言語をマスター",
+        footerTagline: "説明力を鍛えて言語をマスター",
         footerRights: "無断転載禁止。",
         googlePlay: "Google Play"
     }

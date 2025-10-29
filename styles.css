@@ -585,8 +585,8 @@ section {
 
 /* Footer */
 .footer {
-    background: var(--primary);
-    color: var(--white);
+    background: var(--secondary);
+    color: var(--primary);
     padding: 60px 0 24px;
 }
 
@@ -627,7 +627,7 @@ section {
 
 .footer-column a {
     display: block;
-    color: var(--white);
+    color: var(--primary);
     text-decoration: none;
     opacity: 0.8;
     margin-bottom: 12px;
