@@ -93,8 +93,6 @@ const translations = {
         planFree: "Free Plan",
         planPremium: "Premium",
         perMonth: "/month",
-        perMonthUS: "/month (US)",
-        perMonthJP: "/month (Japan)",
         recommended: "Recommended",
         freeFeat1: "3 AI evaluations per day",
         freeFeat2: "Basic question selection",
@@ -122,7 +120,7 @@ const translations = {
         terms1Title: "1. Acceptance of Terms",
         terms1Content: "By accessing and using Katari, you accept and agree to be bound by these Terms of Service.",
         terms2Title: "2. Subscription & Payment",
-        terms2Content: "Premium subscriptions are billed monthly. Pricing varies by region: $3.50/month (US) or ¥480/month (Japan). You may cancel at any time. All payments are processed securely through the Google Play Store.",
+        terms2Content: "Premium subscriptions are billed monthly at $3.50/month. You may cancel at any time. All payments are processed securely through the Google Play Store.",
         terms3Title: "3. User Accounts",
         terms3Content: "You are responsible for maintaining the confidentiality of your account credentials and all activities under your account.",
         terms4Title: "4. Refund Policy",
@@ -162,7 +160,7 @@ const translations = {
         navPricing: "料金",
         navContact: "お問い合わせ",
         downloadApp: "アプリをダウンロード",
-        heroTitle: "説明する力を鍛えて<br>言語をマスター",
+        heroTitle: "説明力を鍛えて<br>言語をマスター",
         heroSubtitle: "カジュアルな会話スキルをプロフェッショナルなコミュニケーション力に変換。AIフィードバックで複雑なアイデアを表現する練習ができます。",
         getOnGooglePlay: "Google Playで入手",
         androidOnly: "現在Androidデバイスで利用可能",
@@ -191,7 +189,7 @@ const translations = {
         step2Title: "考えを整理する",
         step2Desc: "目標言語で表現する前に、母国語でメモを取り要点を構造化します",
         step3Title: "目標言語で表現する",
-        step3Desc: "音声認識サポートで、学習中の言語で話せます",
+        step3Desc: "音声認識サポートで、学習中の言語で話すことができます",
         step4Title: "フィードバックを受けて自己評価する",
         step4Desc: "AIの提案を確認し、自分のパフォーマンスを評価して学習を加速させます",
         
@@ -247,8 +245,6 @@ const translations = {
         planFree: "無料プラン",
         planPremium: "プレミアム",
         perMonth: "/月",
-        perMonthUS: "/月 (米国)",
-        perMonthJP: "/月 (日本)",
         recommended: "おすすめ",
         freeFeat1: "1日3回のAI評価",
         freeFeat2: "基本的な質問選択",
@@ -276,7 +272,7 @@ const translations = {
         terms1Title: "1. 規約の承認",
         terms1Content: "Katariにアクセスして使用することで、本利用規約に同意したものとみなされます。",
         terms2Title: "2. サブスクリプションと支払い",
-        terms2Content: "プレミアムサブスクリプションは月額で請求されます。料金は地域によって異なります：$3.50/月（米国）または¥480/月（日本）。いつでもキャンセルできます。すべての支払いはGoogle Playストアを通じて安全に処理されます。",
+        terms2Content: "プレミアムサブスクリプションは月額¥480で請求されます。いつでもキャンセルできます。すべての支払いはGoogle Playストアを通じて安全に処理されます。",
         terms3Title: "3. ユーザーアカウント",
         terms3Content: "アカウント認証情報の機密性を維持し、アカウント下のすべての活動に責任を負います。",
         terms4Title: "4. 返金ポリシー",
@@ -380,6 +376,24 @@ function updateContent() {
             }
         }
     });
+
+    // Update premium price based on language
+    const priceElement = document.getElementById('premiumPrice');
+    if (priceElement) {
+        if (currentLanguage === 'ja') {
+            priceElement.innerHTML = `
+                <span class="price-currency">¥</span>
+                <span class="price-amount">480</span>
+                <span class="price-period">/月</span>
+            `;
+        } else {
+            priceElement.innerHTML = `
+                <span class="price-currency">$</span>
+                <span class="price-amount">3.5</span>
+                <span class="price-period">/month</span>
+            `;
+        }
+    }
 
     // Update HTML lang attribute
     document.documentElement.lang = currentLanguage;

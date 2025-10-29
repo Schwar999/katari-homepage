@@ -443,12 +443,6 @@ section {
     margin-bottom: 16px;
 }
 
-.price-group {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
 .price {
     display: flex;
     align-items: flex-start;
