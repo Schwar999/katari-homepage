@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katari - Master Language Through Explanations</title>
+    <meta name="description"
+        content="Transform your language skills with AI-powered feedback. Practice explanations and professional communication in any language.">
+    <link rel="icon" type="image/svg+xml" href="katari_k.svg">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <select id="languageSelect" onchange="changeLanguage(this.value)">
+            <option value="en">🇺🇸 English</option>
+            <option value="ja">🇯🇵 日本語</option>
+        </select>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="katari-full.png" alt="Katari" class="logo-full">
+            </a>
+            <div class="nav-menu">
+                <a href="#features" data-i18n="navFeatures">Features</a>
+                <a href="#how-it-works" data-i18n="navHowItWorks">How It Works</a>
+                <a href="#languages" data-i18n="navLanguages">Languages</a>
+                <a href="#pricing" data-i18n="navPricing">Pricing</a>
+                <a href="#contact" data-i18n="navContact">Contact</a>
+            </div>
+            <a href="https://play.google.com/store" target="_blank" class="btn-primary" data-i18n="downloadApp">Download
+                App</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <h1 class="hero-title" data-i18n="heroTitle">Master Language Through Explanations</h1>
+            <p class="hero-subtitle" data-i18n="heroSubtitle">Transform casual conversation into professional
+                communication. Practice expressing complex ideas with AI-powered feedback.</p>
+            <div class="hero-buttons">
+                <a href="https://play.google.com/store" target="_blank" class="btn-hero">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                    </svg>
+                    <span data-i18n="getOnGooglePlay">Get it on Google Play</span>
+                </a>
+            </div>
+            <p class="hero-note" data-i18n="androidOnly">Currently available for Android devices</p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title" data-i18n="featuresTitle">Why Choose Katari?</h2>
+            <p class="section-subtitle" data-i18n="featuresSubtitle">Everything you need to master professional
+                communication</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3 data-i18n="feature1Title">AI-Powered Feedback</h3>
+                    <p data-i18n="feature1Desc">Get instant, contextual feedback on grammar, vocabulary, and expression
+                        quality from advanced AI</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3 data-i18n="feature2Title">Structured Learning</h3>
+                    <p data-i18n="feature2Desc">4-step proven method: Question → Note → Express → Evaluate</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎙️</div>
+                    <h3 data-i18n="feature3Title">Voice Recognition</h3>
+                    <p data-i18n="feature3Desc">Practice speaking naturally with advanced speech-to-text technology</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3 data-i18n="feature4Title">Native Language Notes</h3>
+                    <p data-i18n="feature4Desc">Organize your thoughts in your native language before expressing them
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 data-i18n="feature5Title">Progress Tracking</h3>
+                    <p data-i18n="feature5Desc">Monitor your improvement with detailed history and self-evaluation</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3 data-i18n="feature6Title">Customizable Learning</h3>
+                    <p data-i18n="feature6Desc">Adjust difficulty, conversation style, and topics to match your goals
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title" data-i18n="howTitle">How It Works</h2>
+            <p class="section-subtitle" data-i18n="howSubtitle">Simple, effective, proven</p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-visual">
+                        <div class="step-number">1</div>
+                    </div>
+                    <div class="step-content">
+                        <h3 data-i18n="step1Title">Choose a Question</h3>
+                        <p data-i18n="step1Desc">Select from various topics and difficulty levels, or let the AI suggest
+                            questions based on your preferences</p>
+                    </div>
+                </div>
+                <div class="step step-reverse">
+                    <div class="step-visual">
+                        <div class="step-number">2</div>
+                    </div>
+                    <div class="step-content">
+                        <h3 data-i18n="step2Title">Organize Your Thoughts</h3>
+                        <p data-i18n="step2Desc">Take notes in your native language to structure key points before
+                            expressing them in your target language</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-visual">
+                        <div class="step-number">3</div>
+                    </div>
+                    <div class="step-content">
+                        <h3 data-i18n="step3Title">Express in Target Language</h3>
+                        <p data-i18n="step3Desc">Type or speak your explanation in the language you're learning
+                            with voice recognition support</p>
+                    </div>
+                </div>
+                <div class="step step-reverse">
+                    <div class="step-visual">
+                        <div class="step-number">4</div>
+                    </div>
+                    <div class="step-content">
+                        <h3 data-i18n="step4Title">Get Feedback & Self-Evaluate</h3>
+                        <p data-i18n="step4Desc">Review AI suggestions and rate your own performance to accelerate your
+                            learning journey</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Supported Languages Section -->
+    <section id="languages" class="languages">
+        <div class="container">
+            <h2 class="section-title" data-i18n="languagesTitle">65+ Languages Supported</h2>
+            <p class="section-subtitle" data-i18n="languagesSubtitle">Learn any major language with comprehensive
+                support</p>
+
+            <div class="language-categories">
+                <div class="language-category">
+                    <h3 data-i18n="langCatMajor">Major Languages</h3>
+                    <div class="language-list">
+                        <span class="language-item"><span data-i18n="langEnUS">English (US)</span></span>
+                        <span class="language-item"><span data-i18n="langEnGB">English (UK)</span></span>
+                        <span class="language-item"><span data-i18n="langJa">Japanese</span></span>
+                        <span class="language-item"><span data-i18n="langKo">Korean</span></span>
+                        <span class="language-item"><span data-i18n="langZhCN">Chinese (Simplified)</span></span>
+                        <span class="language-item"><span data-i18n="langZhTW">Chinese (Traditional)</span></span>
+                        <span class="language-item"><span data-i18n="langDe">German</span></span>
+                        <span class="language-item"><span data-i18n="langFr">French</span></span>
+                        <span class="language-item"><span data-i18n="langEs">Spanish</span></span>
+                        <span class="language-item"><span data-i18n="langIt">Italian</span></span>
+                        <span class="language-item"><span data-i18n="langPt">Portuguese</span></span>
+                        <span class="language-item"><span data-i18n="langRu">Russian</span></span>
+                    </div>
+                </div>
+
+                <div class="language-category">
+                    <h3 data-i18n="langCatEuropean">European Languages</h3>
+                    <div class="language-list">
+                        <span class="language-item"><span data-i18n="langNl">Dutch</span></span>
+                        <span class="language-item"><span data-i18n="langPl">Polish</span></span>
+                        <span class="language-item"><span data-i18n="langSv">Swedish</span></span>
+                        <span class="language-item"><span data-i18n="langDa">Danish</span></span>
+                        <span class="language-item"><span data-i18n="langNo">Norwegian</span></span>
+                        <span class="language-item"><span data-i18n="langFi">Finnish</span></span>
+                        <span class="language-item"><span data-i18n="langTr">Turkish</span></span>
+                        <span class="language-item"><span data-i18n="langEl">Greek</span></span>
+                        <span class="language-item"><span data-i18n="langCs">Czech</span></span>
+                        <span class="language-item"><span data-i18n="langHu">Hungarian</span></span>
+                    </div>
+                </div>
+
+                <div class="language-category">
+                    <h3 data-i18n="langCatAsian">Asian Languages</h3>
+                    <div class="language-list">
+                        <span class="language-item"><span data-i18n="langTh">Thai</span></span>
+                        <span class="language-item"><span data-i18n="langVi">Vietnamese</span></span>
+                        <span class="language-item"><span data-i18n="langId">Indonesian</span></span>
+                        <span class="language-item"><span data-i18n="langTl">Filipino</span></span>
+                        <span class="language-item"><span data-i18n="langHi">Hindi</span></span>
+                        <span class="language-item"><span data-i18n="langTa">Tamil</span></span>
+                        <span class="language-item"><span data-i18n="langBn">Bengali</span></span>
+                        <span class="language-item"><span data-i18n="langUr">Urdu</span></span>
+                    </div>
+                </div>
+
+                <div class="language-category">
+                    <h3 data-i18n="langCatOther">Other Languages</h3>
+                    <div class="language-list">
+                        <span class="language-item"><span data-i18n="langAr">Arabic</span></span>
+                        <span class="language-item"><span data-i18n="langHe">Hebrew</span></span>
+                        <span class="language-item"><span data-i18n="langFa">Persian</span></span>
+                        <span class="language-item"><span data-i18n="langAf">Afrikaans</span></span>
+                        <span class="language-item"><span data-i18n="langSw">Swahili</span></span>
+                        <span class="language-item" data-i18n="andMore">...and 40+ more</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title" data-i18n="pricingTitle">Simple, Transparent Pricing</h2>
+            <p class="section-subtitle" data-i18n="pricingSubtitle">Start free, upgrade anytime</p>
+
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 data-i18n="planFree">Free Plan</h3>
+                        <div class="price">
+                            <span class="price-currency">$</span>
+                            <span class="price-amount">0</span>
+                            <span class="price-period" data-i18n="perMonth">/month</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li data-i18n="freeFeat1">3 AI evaluations per day</li>
+                        <li data-i18n="freeFeat2">Basic question selection</li>
+                        <li data-i18n="freeFeat3">View latest record only</li>
+                        <li data-i18n="freeFeat4">Voice recognition</li>
+                        <li data-i18n="freeFeat5">All core features</li>
+                    </ul>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="badge" data-i18n="recommended">Recommended</div>
+                    <div class="pricing-header">
+                        <h3 data-i18n="planPremium">Premium</h3>
+                        <div class="price-group">
+                            <div class="price">
+                                <span class="price-currency">$</span>
+                                <span class="price-amount">3.5</span>
+                                <span class="price-period" data-i18n="perMonthUS">/month (US)</span>
+                            </div>
+                            <div class="price">
+                                <span class="price-currency">¥</span>
+                                <span class="price-amount">480</span>
+                                <span class="price-period" data-i18n="perMonthJP">/月 (日本)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li data-i18n="premFeat1">Unlimited AI evaluations</li>
+                        <li data-i18n="premFeat2">Choose any question deck</li>
+                        <li data-i18n="premFeat3">Customize difficulty & style</li>
+                        <li data-i18n="premFeat4">Filter by categories</li>
+                        <li data-i18n="premFeat5">Re-edit & retry questions</li>
+                        <li data-i18n="premFeat6">Full history access</li>
+                        <li data-i18n="premFeat7">Priority support</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p class="pricing-note" data-i18n="pricingNote">All plans include voice recognition and core learning
+                features. Upgrade anytime from within the app.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title" data-i18n="contactTitle">Get In Touch</h2>
+            <div class="contact-info">
+                <!-- ★★★ ADD YOUR CONTACT INFORMATION HERE ★★★ -->
+                <p><strong data-i18n="contactEmail">Email:</strong> <span
+                        class="placeholder">support@katari-app.com</span></p>
+                <p><strong data-i18n="contactSupport">Support:</strong> <span
+                        class="placeholder">help@katari-app.com</span></p>
+                <p><strong data-i18n="contactBusiness">Business Inquiries:</strong> <span
+                        class="placeholder">business@katari-app.com</span></p>
+                <!-- ★★★ END CONTACT INFORMATION ★★★ -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Legal Sections -->
+    <section class="legal">
+        <div class="container">
+            <div class="legal-content">
+                <h2 id="terms" data-i18n="termsTitle">Terms of Service</h2>
+                <p data-i18n="termsLastUpdated"><strong>Last Updated:</strong> [DATE]</p>
+
+                <h3 data-i18n="terms1Title">1. Acceptance of Terms</h3>
+                <p data-i18n="terms1Content">By accessing and using Katari, you accept and agree to be bound by these
+                    Terms of Service.</p>
+
+                <h3 data-i18n="terms2Title">2. Subscription & Payment</h3>
+                <p data-i18n="terms2Content">Premium subscriptions are billed monthly. Pricing varies by region:
+                    $3.50/month (US) or ¥480/month (Japan). You may cancel at any time. All payments are processed
+                    securely through the Google Play Store.</p>
+
+                <h3 data-i18n="terms3Title">3. User Accounts</h3>
+                <p data-i18n="terms3Content">You are responsible for maintaining the confidentiality of your account
+                    credentials and all activities under your account.</p>
+
+                <h3 data-i18n="terms4Title">4. Refund Policy</h3>
+                <p data-i18n="terms4Content">Refunds are handled through Google Play Store's refund policy. If
+                    unsatisfied, please request a refund through the Play Store within the applicable refund window.</p>
+
+                <h3 data-i18n="terms5Title">5. Cancellation</h3>
+                <p data-i18n="terms5Content">You may cancel your subscription at any time through your Google Play Store
+                    subscription settings. Access continues until the end of the billing period.</p>
+
+                <!-- ★★★ ADD COMPANY CONTACT HERE ★★★ -->
+                <div class="contact-placeholder">
+                    <p><strong data-i18n="contactUs">Contact us:</strong> <span
+                            class="placeholder">support@katari-app.com</span></p>
+                </div>
+                <!-- ★★★ END COMPANY CONTACT ★★★ -->
+
+                <h2 id="privacy" data-i18n="privacyTitle">Privacy Policy</h2>
+                <p data-i18n="privacyLastUpdated"><strong>Last Updated:</strong> [DATE]</p>
+
+                <h3 data-i18n="privacy1Title">1. Information We Collect</h3>
+                <p data-i18n="privacy1Content">We collect information you provide directly (email, name, practice data)
+                    and automatically (device info, usage data).</p>
+
+                <h3 data-i18n="privacy2Title">2. How We Use Your Information</h3>
+                <p data-i18n="privacy2Content">We use your information to provide the service, improve features, and
+                    provide customer support. Your practice data is used to generate AI feedback.</p>
+
+                <h3 data-i18n="privacy3Title">3. Data Security</h3>
+                <p data-i18n="privacy3Content">We implement industry-standard security measures to protect your data.
+                    All data is encrypted in transit and at rest using Firebase security.</p>
+
+                <h3 data-i18n="privacy4Title">4. Data Retention</h3>
+                <p data-i18n="privacy4Content">We retain your data while your account is active. You may request
+                    deletion at any time by contacting support.</p>
+
+                <h3 data-i18n="privacy5Title">5. Third-Party Services</h3>
+                <p data-i18n="privacy5Content">We use Google Cloud Platform for AI services, Firebase for data storage,
+                    and Google Play for payment processing.</p>
+
+                <!-- ★★★ ADD PRIVACY CONTACT HERE ★★★ -->
+                <div class="contact-placeholder">
+                    <p><strong data-i18n="privacyContact">Privacy inquiries:</strong> <span
+                            class="placeholder">privacy@katari-app.com</span></p>
+                </div>
+                <!-- ★★★ END PRIVACY CONTACT ★★★ -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="katari-full.png" alt="Katari" class="footer-logo">
+                    <p data-i18n="footerTagline">Master language through explanations</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 data-i18n="footerProduct">Product</h4>
+                        <a href="#features" data-i18n="navFeatures">Features</a>
+                        <a href="#how-it-works" data-i18n="navHowItWorks">How It Works</a>
+                        <a href="#languages" data-i18n="navLanguages">Languages</a>
+                        <a href="#pricing" data-i18n="navPricing">Pricing</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4 data-i18n="footerLegal">Legal</h4>
+                        <a href="#terms" data-i18n="termsTitle">Terms of Service</a>
+                        <a href="#privacy" data-i18n="privacyTitle">Privacy Policy</a>
+                        <a href="#contact" data-i18n="navContact">Contact</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4 data-i18n="footerDownload">Download</h4>
+                        <a href="https://play.google.com/store" target="_blank" data-i18n="googlePlay">Google Play</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Katari. <span data-i18n="footerRights">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
