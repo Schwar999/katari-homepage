@@ -8,21 +8,766 @@
     <meta name="description"
         content="Transform your language skills with AI-powered feedback. Practice detailed explanations and professional communication in any language.">
     <link rel="icon" type="image/svg+xml" href="katari_k.svg">
-    <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #04335F;
+            --primary-light: #0a4d8a;
+            --secondary: #A6B0B9;
+            --accent: #4CAF50;
+            --bg: #F5F5F5;
+            --white: #FFFFFF;
+            --text: #212121;
+            --text-light: #757575;
+            --border: #E0E0E0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 16px 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-full {
+            height: 36px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .language-dropdown {
+            padding: 8px 12px;
+            border: 2px solid var(--primary);
+            border-radius: 24px;
+            background: var(--white);
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .language-dropdown:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* Buttons */
+        .btn-primary,
+        .btn-secondary,
+        .btn-hero,
+        .btn-outline {
+            display: inline-block;
+            padding: 12px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(4, 51, 95, 0.3);
+        }
+
+        .btn-hero {
+            background: var(--white);
+            color: var(--primary);
+            padding: 16px 48px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-hero svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .btn-hero:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 80px 24px;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--secondary) 100%);
+            z-index: -1;
+        }
+
+        .hero-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            color: var(--white);
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-title {
+            font-size: clamp(32px, 6vw, 56px);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(16px, 3vw, 20px);
+            margin-bottom: 40px;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .hero-note {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 800;
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 60px;
+        }
+
+        /* Features Section */
+        .features {
+            background: var(--white);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .feature-card {
+            background: var(--bg);
+            padding: 40px;
+            border-radius: 24px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 12px 40px rgba(4, 51, 95, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: var(--bg);
+        }
+
+        .steps {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        .step {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .step-reverse {
+            direction: rtl;
+        }
+
+        .step-reverse .step-content {
+            direction: ltr;
+        }
+
+        .step-visual {
+            display: flex;
+            justify-content: center;
+        }
+
+        .step-number {
+            width: 100px;
+            height: 100px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: 800;
+            box-shadow: 0 8px 30px rgba(4, 51, 95, 0.3);
+        }
+
+        .step-content h3 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .step-content p {
+            font-size: 16px;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Languages Section */
+        .languages {
+            background: var(--white);
+        }
+
+        .language-categories {
+            display: grid;
+            gap: 48px;
+        }
+
+        .language-category h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .language-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .language-item {
+            background: var(--bg);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: var(--text);
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .language-item:hover {
+            border-color: var(--primary);
+            background: var(--white);
+        }
+
+        /* Pricing Section */
+        .pricing {
+            background: var(--bg);
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            border-radius: 32px;
+            padding: 48px 32px;
+            position: relative;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(4, 51, 95, 0.15);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-8px);
+        }
+
+        .badge {
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: var(--white);
+            padding: 8px 24px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 32px;
+            padding-bottom: 32px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .pricing-header h3 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .price {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .price-currency {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 6px;
+        }
+
+        .price-amount {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .price-period {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: 20px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+
+        .pricing-features li {
+            padding: 12px 0;
+            color: var(--text);
+            position: relative;
+            padding-left: 32px;
+        }
+
+        .pricing-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .pricing-note {
+            text-align: center;
+            margin-top: 48px;
+            color: var(--text-light);
+            font-size: 14px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--white);
+            text-align: center;
+        }
+
+        .contact-info {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--bg);
+            padding: 48px;
+            border-radius: 24px;
+        }
+
+        .contact-info p {
+            font-size: 18px;
+            margin: 16px 0;
+            color: var(--text);
+        }
+
+        .contact-info strong {
+            color: var(--primary);
+        }
+
+        .placeholder {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Legal Section */
+        .legal {
+            background: var(--bg);
+        }
+
+        .legal-content {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 60px;
+            border-radius: 24px;
+        }
+
+        .legal-content h2 {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-top: 60px;
+            margin-bottom: 24px;
+        }
+
+        .legal-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .legal-content h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 32px;
+            margin-bottom: 16px;
+        }
+
+        .legal-content h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+
+        .legal-content p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .legal-content ul {
+            margin: 16px 0;
+            padding-left: 32px;
+        }
+
+        .legal-content ul li {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 8px;
+        }
+
+        .contact-placeholder {
+            background: linear-gradient(135deg, rgba(4, 51, 95, 0.05), rgba(166, 176, 185, 0.05));
+            padding: 24px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+            margin: 32px 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 60px 0 24px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 3fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            max-width: 300px;
+        }
+
+        .footer-logo {
+            height: 60px;
+            margin-bottom: 20px;
+        }
+
+        .footer-brand p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-column h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-column a {
+            display: block;
+            color: var(--primary);
+            text-decoration: none;
+            opacity: 0.8;
+            margin-bottom: 12px;
+            transition: opacity 0.3s;
+        }
+
+        .footer-column a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .nav-right {
+                gap: 8px;
+            }
+
+            .language-dropdown {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+
+            .btn-primary {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+
+            .logo-full {
+                height: 28px;
+            }
+
+            .hero {
+                min-height: 80vh;
+                padding: 60px 24px;
+            }
+
+            .hero-title {
+                font-size: 28px;
+            }
+
+            .hero-subtitle {
+                font-size: 16px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .step {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .step-reverse {
+                direction: ltr;
+            }
+
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .legal-content {
+                padding: 32px 24px;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <!-- Language Selector -->
-    <div class="language-selector">
-        <select id="languageSelect" onchange="changeLanguage(this.value)">
-            <option value="en">🇺🇸 English</option>
-            <option value="ja">🇯🇵 日本語</option>
-        </select>
-    </div>
-
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -36,8 +781,14 @@
                 <a href="#pricing" data-i18n="navPricing">Pricing</a>
                 <a href="#contact" data-i18n="navContact">Contact</a>
             </div>
-            <a href="https://play.google.com/store" target="_blank" class="btn-primary" data-i18n="downloadApp">Download
-                App</a>
+            <div class="nav-right">
+                <select id="languageSelect" onchange="changeLanguage(this.value)" class="language-dropdown">
+                    <option value="en">🇺🇸 EN</option>
+                    <option value="ja">🇯🇵 JP</option>
+                </select>
+                <a href="https://play.google.com/store" target="_blank" class="btn-primary"
+                    data-i18n="downloadApp">Download App</a>
+            </div>
         </div>
     </nav>
 
@@ -285,14 +1036,12 @@
         <div class="container">
             <h2 class="section-title" data-i18n="contactTitle">Get In Touch</h2>
             <div class="contact-info">
-                <!-- ★★★ ADD YOUR CONTACT INFORMATION HERE ★★★ -->
                 <p><strong data-i18n="contactEmail">Email:</strong> <span
                         class="placeholder">support@katari-app.com</span></p>
                 <p><strong data-i18n="contactSupport">Support:</strong> <span
                         class="placeholder">help@katari-app.com</span></p>
                 <p><strong data-i18n="contactBusiness">Business Inquiries:</strong> <span
                         class="placeholder">business@katari-app.com</span></p>
-                <!-- ★★★ END CONTACT INFORMATION ★★★ -->
             </div>
         </div>
     </section>
@@ -313,6 +1062,27 @@
                     $3.50/month (US) or ¥480/month (Japan). You may cancel at any time. All payments are processed
                     securely through the Google Play Store.</p>
 
+                <h4 data-i18n="terms2aTitle">2.1 Pricing and Fees</h4>
+                <ul>
+                    <li data-i18n="terms2aItem1">Premium Plan: $3.50 USD per month (United States) or ¥480 JPY per month
+                        (Japan)</li>
+                    <li data-i18n="terms2aItem2">Free Plan: $0 - includes 3 AI evaluations per day with basic features
+                    </li>
+                    <li data-i18n="terms2aItem3">All prices are in the currency shown and include applicable taxes where
+                        required by law</li>
+                    <li data-i18n="terms2aItem4">Subscription fees are non-refundable except as required by law or as
+                        specified in our refund policy</li>
+                </ul>
+
+                <h4 data-i18n="terms2bTitle">2.2 Billing and Renewal</h4>
+                <ul>
+                    <li data-i18n="terms2bItem1">Subscriptions automatically renew monthly until cancelled</li>
+                    <li data-i18n="terms2bItem2">You will be charged at the beginning of each billing period</li>
+                    <li data-i18n="terms2bItem3">Payment is processed through Google Play Store's secure payment system
+                    </li>
+                    <li data-i18n="terms2bItem4">Price changes will be notified 30 days in advance</li>
+                </ul>
+
                 <h3 data-i18n="terms3Title">3. User Accounts</h3>
                 <p data-i18n="terms3Content">You are responsible for maintaining the confidentiality of your account
                     credentials and all activities under your account.</p>
@@ -321,16 +1091,46 @@
                 <p data-i18n="terms4Content">Refunds are handled through Google Play Store's refund policy. If
                     unsatisfied, please request a refund through the Play Store within the applicable refund window.</p>
 
+                <h4 data-i18n="terms4aTitle">4.1 Refund Eligibility</h4>
+                <ul>
+                    <li data-i18n="terms4aItem1">Refunds for Google Play purchases must be requested within 48 hours of
+                        purchase</li>
+                    <li data-i18n="terms4aItem2">Refund requests should be submitted directly through the Google Play
+                        Store</li>
+                    <li data-i18n="terms4aItem3">We follow Google Play's refund policy and guidelines</li>
+                    <li data-i18n="terms4aItem4">For technical issues preventing service use, please contact support
+                        before requesting a refund</li>
+                </ul>
+
                 <h3 data-i18n="terms5Title">5. Cancellation</h3>
                 <p data-i18n="terms5Content">You may cancel your subscription at any time through your Google Play Store
                     subscription settings. Access continues until the end of the billing period.</p>
 
-                <!-- ★★★ ADD COMPANY CONTACT HERE ★★★ -->
+                <h4 data-i18n="terms5aTitle">5.1 How to Cancel</h4>
+                <ul>
+                    <li data-i18n="terms5aItem1">Open Google Play Store app on your Android device</li>
+                    <li data-i18n="terms5aItem2">Tap Menu → Subscriptions</li>
+                    <li data-i18n="terms5aItem3">Select Katari Premium and tap Cancel subscription</li>
+                    <li data-i18n="terms5aItem4">Your access will continue until the end of your current billing period
+                    </li>
+                    <li data-i18n="terms5aItem5">No refunds will be provided for the remaining days of the current
+                        billing period</li>
+                </ul>
+
+                <h3 data-i18n="terms6Title">6. Service Availability</h3>
+                <p data-i18n="terms6Content">While we strive to provide continuous service availability, we do not
+                    guarantee uninterrupted access. Service may be temporarily unavailable due to maintenance, updates,
+                    or unforeseen technical issues.</p>
+
+                <h3 data-i18n="terms7Title">7. Customer Support</h3>
+                <p data-i18n="terms7Content">For questions about billing, subscriptions, or technical issues, please
+                    contact our support team at support@katari-app.com. We aim to respond within 24-48 hours during
+                    business days.</p>
+
                 <div class="contact-placeholder">
                     <p><strong data-i18n="contactUs">Contact us:</strong> <span
                             class="placeholder">support@katari-app.com</span></p>
                 </div>
-                <!-- ★★★ END COMPANY CONTACT ★★★ -->
 
                 <h2 id="privacy" data-i18n="privacyTitle">Privacy Policy</h2>
                 <p data-i18n="privacyLastUpdated"><strong>Last Updated:</strong> [DATE]</p>
@@ -355,12 +1155,10 @@
                 <p data-i18n="privacy5Content">We use Google Cloud Platform for AI services, Firebase for data storage,
                     and Google Play for payment processing.</p>
 
-                <!-- ★★★ ADD PRIVACY CONTACT HERE ★★★ -->
                 <div class="contact-placeholder">
                     <p><strong data-i18n="privacyContact">Privacy inquiries:</strong> <span
                             class="placeholder">privacy@katari-app.com</span></p>
                 </div>
-                <!-- ★★★ END PRIVACY CONTACT ★★★ -->
             </div>
         </div>
     </section>
@@ -399,7 +1197,457 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Translation data
+        const translations = {
+            en: {
+                appName: "Katari",
+                navFeatures: "Features",
+                navHowItWorks: "How It Works",
+                navLanguages: "Languages",
+                navPricing: "Pricing",
+                navContact: "Contact",
+                downloadApp: "Download App",
+                heroTitle: "Master Language Through<br>Detailed Explanations",
+                heroSubtitle: "Transform casual conversation into professional communication. Practice expressing complex ideas with AI-powered feedback.",
+                getOnGooglePlay: "Get it on Google Play",
+                androidOnly: "Currently available for Android devices",
+                featuresTitle: "Why Choose Katari?",
+                featuresSubtitle: "Everything you need to master professional communication",
+                feature1Title: "AI-Powered Feedback",
+                feature1Desc: "Get instant, contextual feedback on grammar, vocabulary, and expression quality from advanced AI",
+                feature2Title: "Structured Learning",
+                feature2Desc: "4-step proven method: Question → Note → Express → Evaluate",
+                feature3Title: "Voice Recognition",
+                feature3Desc: "Practice speaking naturally with advanced speech-to-text technology",
+                feature4Title: "Native Language Notes",
+                feature4Desc: "Organize your thoughts in your native language before expressing them",
+                feature5Title: "Progress Tracking",
+                feature5Desc: "Monitor your improvement with detailed history and self-evaluation",
+                feature6Title: "Customizable Learning",
+                feature6Desc: "Adjust difficulty, conversation style, and topics to match your goals",
+                howTitle: "How It Works",
+                howSubtitle: "Simple, effective, proven",
+                step1Title: "Choose a Question",
+                step1Desc: "Select from various topics and difficulty levels, or let the AI suggest questions based on your preferences",
+                step2Title: "Organize Your Thoughts",
+                step2Desc: "Take notes in your native language to structure key points before expressing them in your target language",
+                step3Title: "Express in Target Language",
+                step3Desc: "Type or speak your detailed explanation in the language you're learning with voice recognition support",
+                step4Title: "Get Feedback & Self-Evaluate",
+                step4Desc: "Review AI suggestions and rate your own performance to accelerate your learning journey",
+                languagesTitle: "65+ Languages Supported",
+                languagesSubtitle: "Learn any major language with comprehensive support",
+                langCatMajor: "Major Languages",
+                langCatEuropean: "European Languages",
+                langCatAsian: "Asian Languages",
+                langCatOther: "Other Languages",
+                langEnUS: "English (US)",
+                langEnGB: "English (UK)",
+                langJa: "Japanese",
+                langKo: "Korean",
+                langZhCN: "Chinese (Simplified)",
+                langZhTW: "Chinese (Traditional)",
+                langDe: "German",
+                langFr: "French",
+                langEs: "Spanish",
+                langIt: "Italian",
+                langPt: "Portuguese",
+                langRu: "Russian",
+                langNl: "Dutch",
+                langPl: "Polish",
+                langSv: "Swedish",
+                langDa: "Danish",
+                langNo: "Norwegian",
+                langFi: "Finnish",
+                langTr: "Turkish",
+                langEl: "Greek",
+                langCs: "Czech",
+                langHu: "Hungarian",
+                langTh: "Thai",
+                langVi: "Vietnamese",
+                langId: "Indonesian",
+                langTl: "Filipino",
+                langHi: "Hindi",
+                langTa: "Tamil",
+                langBn: "Bengali",
+                langUr: "Urdu",
+                langAr: "Arabic",
+                langHe: "Hebrew",
+                langFa: "Persian",
+                langAf: "Afrikaans",
+                langSw: "Swahili",
+                andMore: "...and 40+ more",
+                pricingTitle: "Simple, Transparent Pricing",
+                pricingSubtitle: "Start free, upgrade anytime",
+                planFree: "Free Plan",
+                planPremium: "Premium",
+                perMonth: "/month",
+                recommended: "Recommended",
+                freeFeat1: "3 AI evaluations per day",
+                freeFeat2: "Basic question selection",
+                freeFeat3: "View latest record only",
+                freeFeat4: "Voice recognition",
+                freeFeat5: "All core features",
+                premFeat1: "Unlimited AI evaluations",
+                premFeat2: "Choose any question deck",
+                premFeat3: "Customize difficulty & style",
+                premFeat4: "Filter by categories",
+                premFeat5: "Re-edit & retry questions",
+                premFeat6: "Full history access",
+                premFeat7: "Priority support",
+                pricingNote: "All plans include voice recognition and core learning features. Upgrade anytime from within the app.",
+                contactTitle: "Get In Touch",
+                contactEmail: "Email:",
+                contactSupport: "Support:",
+                contactBusiness: "Business Inquiries:",
+                termsTitle: "Terms of Service",
+                termsLastUpdated: "Last Updated:",
+                terms1Title: "1. Acceptance of Terms",
+                terms1Content: "By accessing and using Katari, you accept and agree to be bound by these Terms of Service.",
+                terms2Title: "2. Subscription & Payment",
+                terms2Content: "Premium subscriptions are billed monthly. Pricing varies by region: $3.50/month (US) or ¥480/month (Japan). You may cancel at any time. All payments are processed securely through the Google Play Store.",
+                terms2aTitle: "2.1 Pricing and Fees",
+                terms2aItem1: "Premium Plan: $3.50 USD per month (United States) or ¥480 JPY per month (Japan)",
+                terms2aItem2: "Free Plan: $0 - includes 3 AI evaluations per day with basic features",
+                terms2aItem3: "All prices are in the currency shown and include applicable taxes where required by law",
+                terms2aItem4: "Subscription fees are non-refundable except as required by law or as specified in our refund policy",
+                terms2bTitle: "2.2 Billing and Renewal",
+                terms2bItem1: "Subscriptions automatically renew monthly until cancelled",
+                terms2bItem2: "You will be charged at the beginning of each billing period",
+                terms2bItem3: "Payment is processed through Google Play Store's secure payment system",
+                terms2bItem4: "Price changes will be notified 30 days in advance",
+                terms3Title: "3. User Accounts",
+                terms3Content: "You are responsible for maintaining the confidentiality of your account credentials and all activities under your account.",
+                terms4Title: "4. Refund Policy",
+                terms4Content: "Refunds are handled through Google Play Store's refund policy. If unsatisfied, please request a refund through the Play Store within the applicable refund window.",
+                terms4aTitle: "4.1 Refund Eligibility",
+                terms4aItem1: "Refunds for Google Play purchases must be requested within 48 hours of purchase",
+                terms4aItem2: "Refund requests should be submitted directly through the Google Play Store",
+                terms4aItem3: "We follow Google Play's refund policy and guidelines",
+                terms4aItem4: "For technical issues preventing service use, please contact support before requesting a refund",
+                terms5Title: "5. Cancellation",
+                terms5Content: "You may cancel your subscription at any time through your Google Play Store subscription settings. Access continues until the end of the billing period.",
+                terms5aTitle: "5.1 How to Cancel",
+                terms5aItem1: "Open Google Play Store app on your Android device",
+                terms5aItem2: "Tap Menu → Subscriptions",
+                terms5aItem3: "Select Katari Premium and tap Cancel subscription",
+                terms5aItem4: "Your access will continue until the end of your current billing period",
+                terms5aItem5: "No refunds will be provided for the remaining days of the current billing period",
+                terms6Title: "6. Service Availability",
+                terms6Content: "While we strive to provide continuous service availability, we do not guarantee uninterrupted access. Service may be temporarily unavailable due to maintenance, updates, or unforeseen technical issues.",
+                terms7Title: "7. Customer Support",
+                terms7Content: "For questions about billing, subscriptions, or technical issues, please contact our support team at support@katari-app.com. We aim to respond within 24-48 hours during business days.",
+                contactUs: "Contact us:",
+                privacyTitle: "Privacy Policy",
+                privacyLastUpdated: "Last Updated:",
+                privacy1Title: "1. Information We Collect",
+                privacy1Content: "We collect information you provide directly (email, name, practice data) and automatically (device info, usage data).",
+                privacy2Title: "2. How We Use Your Information",
+                privacy2Content: "We use your information to provide the service, improve features, and provide customer support. Your practice data is used to generate AI feedback.",
+                privacy3Title: "3. Data Security",
+                privacy3Content: "We implement industry-standard security measures to protect your data. All data is encrypted in transit and at rest using Firebase security.",
+                privacy4Title: "4. Data Retention",
+                privacy4Content: "We retain your data while your account is active. You may request deletion at any time by contacting support.",
+                privacy5Title: "5. Third-Party Services",
+                privacy5Content: "We use Google Cloud Platform for AI services, Firebase for data storage, and Google Play for payment processing.",
+                privacyContact: "Privacy inquiries:",
+                footerProduct: "Product",
+                footerLegal: "Legal",
+                footerDownload: "Download",
+                footerTagline: "Master language through detailed explanations",
+                footerRights: "All rights reserved.",
+                googlePlay: "Google Play"
+            },
+            ja: {
+                appName: "Katari",
+                navFeatures: "機能",
+                navHowItWorks: "使い方",
+                navLanguages: "対応言語",
+                navPricing: "料金",
+                navContact: "お問い合わせ",
+                downloadApp: "アプリをダウンロード",
+                heroTitle: "説明力を鍛えて<br>言語をマスター",
+                heroSubtitle: "カジュアルな会話スキルをプロフェッショナルなコミュニケーション力に変換。AIフィードバックで複雑なアイデアを表現する練習ができます。",
+                getOnGooglePlay: "Google Playで入手",
+                androidOnly: "現在Androidデバイスで利用可能",
+                featuresTitle: "Katariを選ぶ理由",
+                featuresSubtitle: "プロフェッショナルなコミュニケーションをマスターするために必要なすべて",
+                feature1Title: "AI搭載フィードバック",
+                feature1Desc: "高度なAIから文法、語彙、表現の質について即座に文脈に沿ったフィードバックを受け取れます",
+                feature2Title: "体系的な学習",
+                feature2Desc: "実証済みの4ステップ方法：質問 → メモ → 表現 → 評価",
+                feature3Title: "音声認識",
+                feature3Desc: "高度な音声認識技術で自然な話し方を練習できます",
+                feature4Title: "母国語でのメモ",
+                feature4Desc: "表現する前に母国語で考えを整理できます",
+                feature5Title: "進捗管理",
+                feature5Desc: "詳細な履歴と自己評価で上達を追跡できます",
+                feature6Title: "カスタマイズ可能な学習",
+                feature6Desc: "難易度、会話スタイル、トピックを目標に合わせて調整できます",
+                howTitle: "使い方",
+                howSubtitle: "シンプル、効果的、実証済み",
+                step1Title: "質問を選ぶ",
+                step1Desc: "様々なトピックと難易度から選ぶか、好みに基づいてAIが質問を提案します",
+                step2Title: "考えを整理する",
+                step2Desc: "目標言語で表現する前に、母国語でメモを取り要点を構造化します",
+                step3Title: "目標言語で表現する",
+                step3Desc: "音声認識サポートで、学習中の言語で話すことができます",
+                step4Title: "フィードバックを受けて自己評価する",
+                step4Desc: "AIの提案を確認し、自分のパフォーマンスを評価して学習を加速させます",
+                languagesTitle: "65以上の言語に対応",
+                languagesSubtitle: "包括的なサポートで主要な言語を学習",
+                langCatMajor: "主要言語",
+                langCatEuropean: "ヨーロッパ言語",
+                langCatAsian: "アジア言語",
+                langCatOther: "その他の言語",
+                langEnUS: "英語（米国）",
+                langEnGB: "英語（英国）",
+                langJa: "日本語",
+                langKo: "韓国語",
+                langZhCN: "中国語（簡体字）",
+                langZhTW: "中国語（繁体字）",
+                langDe: "ドイツ語",
+                langFr: "フランス語",
+                langEs: "スペイン語",
+                langIt: "イタリア語",
+                langPt: "ポルトガル語",
+                langRu: "ロシア語",
+                langNl: "オランダ語",
+                langPl: "ポーランド語",
+                langSv: "スウェーデン語",
+                langDa: "デンマーク語",
+                langNo: "ノルウェー語",
+                langFi: "フィンランド語",
+                langTr: "トルコ語",
+                langEl: "ギリシャ語",
+                langCs: "チェコ語",
+                langHu: "ハンガリー語",
+                langTh: "タイ語",
+                langVi: "ベトナム語",
+                langId: "インドネシア語",
+                langTl: "フィリピン語",
+                langHi: "ヒンディー語",
+                langBn: "ベンガル語",
+                langUr: "ウルドゥー語",
+                langAr: "アラビア語",
+                langHe: "ヘブライ語",
+                langFa: "ペルシャ語",
+                langAf: "アフリカーンス語",
+                langSw: "スワヒリ語",
+                andMore: "...他40以上",
+                pricingTitle: "シンプルで透明な料金",
+                pricingSubtitle: "無料で始めて、いつでもアップグレード",
+                planFree: "無料プラン",
+                planPremium: "プレミアム",
+                perMonth: "/月",
+                recommended: "おすすめ",
+                freeFeat1: "1日3回のAI評価",
+                freeFeat2: "基本的な質問選択",
+                freeFeat3: "最新の記録のみ表示",
+                freeFeat4: "音声認識",
+                freeFeat5: "すべてのコア機能",
+                premFeat1: "無制限のAI評価",
+                premFeat2: "すべての質問デッキを選択",
+                premFeat3: "難易度とスタイルのカスタマイズ",
+                premFeat4: "カテゴリーでフィルタリング",
+                premFeat5: "質問の再編集と再挑戦",
+                premFeat6: "全履歴へのアクセス",
+                premFeat7: "優先サポート",
+                pricingNote: "すべてのプランに音声認識とコア学習機能が含まれます。アプリ内からいつでもアップグレードできます。",
+                contactTitle: "お問い合わせ",
+                contactEmail: "メール：",
+                contactSupport: "サポート：",
+                contactBusiness: "ビジネスに関するお問い合わせ：",
+                termsTitle: "利用規約",
+                termsLastUpdated: "最終更新日：",
+                terms1Title: "1. 規約の承認",
+                terms1Content: "Katariにアクセスして使用することで、本利用規約に同意したものとみなされます。",
+                terms2Title: "2. サブスクリプションと支払い",
+                terms2Content: "プレミアムサブスクリプションは月額で請求されます。地域によって価格が異なります：月額3.50ドル（米国）または月額480円（日本）。いつでもキャンセルできます。すべての支払いはGoogle Playストアを通じて安全に処理されます。",
+                terms2aTitle: "2.1 価格と料金",
+                terms2aItem1: "プレミアムプラン：月額480円（日本）または月額3.50米ドル（米国）",
+                terms2aItem2: "無料プラン：0円 - 1日3回のAI評価と基本機能を含みます",
+                terms2aItem3: "すべての価格は表示通貨で、法律で定められた適用税を含みます",
+                terms2aItem4: "サブスクリプション料金は、法律で定められた場合または返金ポリシーで規定された場合を除き、返金不可です",
+                terms2bTitle: "2.2 請求と更新",
+                terms2bItem1: "サブスクリプションはキャンセルするまで毎月自動更新されます",
+                terms2bItem2: "各請求期間の開始時に課金されます",
+                terms2bItem3: "支払いはGoogle Playストアの安全な支払いシステムを通じて処理されます",
+                terms2bItem4: "価格変更は30日前に通知されます",
+                terms3Title: "3. ユーザーアカウント",
+                terms3Content: "アカウント認証情報の機密性を維持し、アカウント下のすべての活動に責任を負います。",
+                terms4Title: "4. 返金ポリシー",
+                terms4Content: "返金はGoogle Playストアの返金ポリシーに従って処理されます。ご満足いただけない場合は、適用される返金期間内にPlayストアから返金をリクエストしてください。",
+                terms4aTitle: "4.1 返金の適格性",
+                terms4aItem1: "Google Playでの購入の返金は購入後48時間以内にリクエストする必要があります",
+                terms4aItem2: "返金リクエストはGoogle Playストアから直接提出してください",
+                terms4aItem3: "Google Playの返金ポリシーとガイドラインに従います",
+                terms4aItem4: "サービス利用を妨げる技術的問題については、返金をリクエストする前にサポートにお問い合わせください",
+                terms5Title: "5. キャンセル",
+                terms5Content: "Google Playストアのサブスクリプション設定からいつでもサブスクリプションをキャンセルできます。請求期間の終了までアクセスが継続されます。",
+                terms5aTitle: "5.1 キャンセル方法",
+                terms5aItem1: "AndroidデバイスでGoogle Playストアアプリを開きます",
+                terms5aItem2: "メニュー → サブスクリプションをタップします",
+                terms5aItem3: "Katariプレミアムを選択し、サブスクリプションをキャンセルをタップします",
+                terms5aItem4: "現在の請求期間の終了までアクセスが継続されます",
+                terms5aItem5: "現在の請求期間の残り日数については返金されません",
+                terms6Title: "6. サービスの可用性",
+                terms6Content: "継続的なサービス提供に努めていますが、中断のないアクセスを保証するものではありません。メンテナンス、アップデート、または予期しない技術的問題により、サービスが一時的に利用できなくなる場合があります。",
+                terms7Title: "7. カスタマーサポート",
+                terms7Content: "請求、サブスクリプション、または技術的問題についてのご質問は、support@katari-app.comまでお問い合わせください。営業日内に24〜48時間以内の返信を目指しています。",
+                contactUs: "お問い合わせ：",
+                privacyTitle: "プライバシーポリシー",
+                privacyLastUpdated: "最終更新日：",
+                privacy1Title: "1. 収集する情報",
+                privacy1Content: "直接提供された情報（メール、名前、練習データ）と自動的に収集される情報（デバイス情報、使用データ）を収集します。",
+                privacy2Title: "2. 情報の使用方法",
+                privacy2Content: "サービスの提供、機能の改善、カスタマーサポートの提供のために情報を使用します。練習データはAIフィードバックの生成に使用されます。",
+                privacy3Title: "3. データセキュリティ",
+                privacy3Content: "業界標準のセキュリティ対策を実装してデータを保護しています。すべてのデータはFirebaseセキュリティを使用して転送中および保存時に暗号化されます。",
+                privacy4Title: "4. データ保持",
+                privacy4Content: "アカウントがアクティブな間、データを保持します。いつでもサポートに連絡して削除をリクエストできます。",
+                privacy5Title: "5. サードパーティサービス",
+                privacy5Content: "AIサービスにはGoogle Cloud Platform、データストレージにはFirebase、支払い処理にはGoogle Playを使用しています。",
+                privacyContact: "プライバシーに関するお問い合わせ：",
+                footerProduct: "製品",
+                footerLegal: "法的情報",
+                footerDownload: "ダウンロード",
+                footerTagline: "説明力を鍛えて言語をマスター",
+                footerRights: "無断転載禁止。",
+                googlePlay: "Google Play"
+            }
+        };
+
+        // Current language
+        let currentLanguage = 'en';
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function () {
+            // Detect browser language
+            const browserLang = navigator.language.split('-')[0];
+            if (browserLang === 'ja') {
+                currentLanguage = 'ja';
+                document.getElementById('languageSelect').value = 'ja';
+                updateContent();
+            }
+
+            // Smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Add scroll animation
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver(function (entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements
+            document.querySelectorAll('.feature-card, .step, .pricing-card, .language-category').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                observer.observe(el);
+            });
+        });
+
+        // Change language function
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            updateContent();
+        }
+
+        // Update content based on selected language
+        function updateContent() {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[currentLanguage] && translations[currentLanguage][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[currentLanguage][key];
+                    } else {
+                        element.innerHTML = translations[currentLanguage][key];
+                    }
+                }
+            });
+
+            // Update premium price based on language
+            const priceElement = document.getElementById('premiumPrice');
+            if (priceElement) {
+                if (currentLanguage === 'ja') {
+                    priceElement.innerHTML = `
+                        <span class="price-currency">¥</span>
+                        <span class="price-amount">480</span>
+                        <span class="price-period">/月</span>
+                    `;
+                } else {
+                    priceElement.innerHTML = `
+                        <span class="price-currency">$</span>
+                        <span class="price-amount">3.5</span>
+                        <span class="price-period">/month</span>
+                    `;
+                }
+            }
+
+            // Update HTML lang attribute
+            document.documentElement.lang = currentLanguage;
+        }
+
+        // Add sticky navbar effect
+        let lastScroll = 0;
+        const navbar = document.querySelector('.navbar');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll <= 0) {
+                navbar.style.boxShadow = 'none';
+            } else {
+                navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // Analytics tracking (placeholder)
+        function trackEvent(category, action, label) {
+            console.log('Event tracked:', category, action, label);
+        }
+
+        // Track button clicks
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('a[href^="#"]').forEach(link => {
+                link.addEventListener('click', function () {
+                    trackEvent('Navigation', 'Click', this.getAttribute('href'));
+                });
+            });
+
+            document.querySelectorAll('.btn-primary, .btn-hero').forEach(button => {
+                button.addEventListener('click', function () {
+                    trackEvent('CTA', 'Click', this.textContent);
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
