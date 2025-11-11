@@ -549,7 +549,7 @@ section {
 }
 
 .placeholder {
-    color: var(--accent);
+    color: var(--text-light);
     font-weight: 600;
 }
 
