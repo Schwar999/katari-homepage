@@ -548,11 +548,6 @@ section {
     color: var(--primary);
 }
 
-.placeholder {
-    color: var(--text-light);
-    font-weight: 600;
-}
-
 /* Legal Section */
 .legal {
     background: var(--bg);
