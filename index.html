@@ -309,17 +309,18 @@
                 <p data-i18n="commerce7Content">インターネット接続料金、通信料金はお客様のご負担となります。</p>
 
                 <h3 data-i18n="commerce8Title">支払方法</h3>
-                <p data-i18n="commerce8Content">Google Playストアを通じたクレジットカード決済、デビットカード決済、Google Playクレジット、キャリア決済</p>
+                <p data-i18n="commerce8Content">Stripe決済システムを通じたクレジットカード決済（Visa、Mastercard、American
+                    Express、JCB等）、デビットカード決済</p>
 
                 <h3 data-i18n="commerce9Title">支払時期</h3>
-                <p data-i18n="commerce9Content">サブスクリプション登録時および毎月の自動更新時</p>
+                <p data-i18n="commerce9Content">サブスクリプション登録時および毎月の自動更新時（登録日と同日）</p>
 
                 <h3 data-i18n="commerce10Title">サービスの提供時期</h3>
                 <p data-i18n="commerce10Content">決済完了後、即時利用可能</p>
 
                 <h3 data-i18n="commerce11Title">返品・キャンセルについて</h3>
-                <p data-i18n="commerce11Content">デジタルコンテンツの性質上、サービス利用開始後の返品・返金は原則として承っておりません。Google
-                    Playストアの返金ポリシーに基づき、購入後48時間以内であれば返金申請が可能です。技術的な問題でサービスが利用できない場合は、support@tommy-tech.netまでお問い合わせください。
+                <p data-i18n="commerce11Content">
+                    デジタルコンテンツの性質上、サービス利用開始後の返品・返金は原則として承っておりません。サブスクリプションはいつでもキャンセル可能で、キャンセル後は次回請求日からサービスが停止します。技術的な問題でサービスが利用できない場合は、support@tommy-tech.netまでお問い合わせください。
                 </p>
 
                 <h3 data-i18n="commerce12Title">動作環境</h3>
@@ -342,19 +343,20 @@
 
                 <h3 data-i18n="terms2Title">2. Subscription & Payment</h3>
                 <p data-i18n="terms2Content">Premium subscriptions are billed monthly. Pricing varies by region:
-                    $3.50/month (US) or ¥480/month (Japan). You may cancel at any time. All payments are processed
-                    securely through the Google Play Store.</p>
+                    $3.50/month (US) or ¥480/month (Japan). You may cancel at any time through the Stripe customer
+                    portal. All payments are processed
+                    securely through Stripe.</p>
 
-                <h4 data-i18n="terms2aTitle">2.1 Pricing and Fees</h4>
+                <h4 data-i18n="terms2bTitle">2.2 Billing and Renewal</h4>
                 <ul>
-                    <li data-i18n="terms2aItem1">Premium Plan: $3.50 USD per month (United States) or ¥480 JPY per month
-                        (Japan)</li>
-                    <li data-i18n="terms2aItem2">Free Plan: $0 - includes 3 AI evaluations per day with basic features
+                    <li data-i18n="terms2bItem1">Subscriptions automatically renew monthly until cancelled</li>
+                    <li data-i18n="terms2bItem2">You will be charged on the same day each month as your initial
+                        subscription date</li>
+                    <li data-i18n="terms2bItem3">Payment is processed through Stripe's secure payment system
                     </li>
-                    <li data-i18n="terms2aItem3">All prices are in the currency shown and include applicable taxes where
-                        required by law</li>
-                    <li data-i18n="terms2aItem4">Subscription fees are non-refundable except as required by law or as
-                        specified in our refund policy</li>
+                    <li data-i18n="terms2bItem4">Price changes will be notified 30 days in advance</li>
+                    <li data-i18n="terms2bItem5">Cancellation takes effect at the end of your current billing period
+                    </li>
                 </ul>
 
                 <h4 data-i18n="terms2bTitle">2.2 Billing and Renewal</h4>
@@ -371,32 +373,36 @@
                     credentials and all activities under your account.</p>
 
                 <h3 data-i18n="terms4Title">4. Refund Policy</h3>
-                <p data-i18n="terms4Content">Refunds are handled through Google Play Store's refund policy. If
-                    unsatisfied, please request a refund through the Play Store within the applicable refund window.</p>
+                <p data-i18n="terms4Content">Due to the digital nature of our service, refunds are generally not
+                    available once you begin using the service. If you experience technical issues that prevent you from
+                    using the service, please contact support@tommy-tech.net before cancelling your subscription.</p>
 
                 <h4 data-i18n="terms4aTitle">4.1 Refund Eligibility</h4>
                 <ul>
-                    <li data-i18n="terms4aItem1">Refunds for Google Play purchases must be requested within 48 hours of
-                        purchase</li>
-                    <li data-i18n="terms4aItem2">Refund requests should be submitted directly through the Google Play
-                        Store</li>
-                    <li data-i18n="terms4aItem3">We follow Google Play's refund policy and guidelines</li>
-                    <li data-i18n="terms4aItem4">For technical issues preventing service use, please contact support
-                        before requesting a refund</li>
+                    <li data-i18n="terms4aItem1">Refunds may be considered on a case-by-case basis for technical issues
+                        that prevent service usage</li>
+                    <li data-i18n="terms4aItem2">Refund requests must be submitted within 7 days of the charge</li>
+                    <li data-i18n="terms4aItem3">Refund requests should be sent to support@tommy-tech.net with a
+                        detailed explanation</li>
+                    <li data-i18n="terms4aItem4">Refunds are processed within 5-10 business days if approved</li>
+                    <li data-i18n="terms4aItem5">No partial refunds are provided for unused portions of a billing period
+                        after cancellation</li>
                 </ul>
 
                 <h3 data-i18n="terms5Title">5. Cancellation</h3>
-                <p data-i18n="terms5Content">You may cancel your subscription at any time through your Google Play Store
-                    subscription settings. Access continues until the end of the billing period.</p>
+                <p data-i18n="terms5Content">You may cancel your subscription at any time through the Stripe customer
+                    portal accessible from your account settings. Your access will continue until the end of your
+                    current billing period.</p>
 
                 <h4 data-i18n="terms5aTitle">5.1 How to Cancel</h4>
                 <ul>
-                    <li data-i18n="terms5aItem1">Open Google Play Store app on your Android device</li>
-                    <li data-i18n="terms5aItem2">Tap Menu → Subscriptions</li>
-                    <li data-i18n="terms5aItem3">Select Katari Premium and tap Cancel subscription</li>
-                    <li data-i18n="terms5aItem4">Your access will continue until the end of your current billing period
+                    <li data-i18n="terms5aItem1">Log in to your Katari account</li>
+                    <li data-i18n="terms5aItem2">Go to Account Settings → Subscription</li>
+                    <li data-i18n="terms5aItem3">Click 'Manage Subscription' to access the Stripe customer portal</li>
+                    <li data-i18n="terms5aItem4">Click 'Cancel subscription' and confirm</li>
+                    <li data-i18n="terms5aItem5">Your access will continue until the end of your current billing period
                     </li>
-                    <li data-i18n="terms5aItem5">No refunds will be provided for the remaining days of the current
+                    <li data-i18n="terms5aItem6">No refunds will be provided for the remaining days of the current
                         billing period</li>
                 </ul>
 
@@ -436,7 +442,8 @@
 
                 <h3 data-i18n="privacy5Title">5. Third-Party Services</h3>
                 <p data-i18n="privacy5Content">We use Google Cloud Platform for AI services, Firebase for data storage,
-                    and Google Play for payment processing.</p>
+                    and Stripe for secure payment processing. Stripe may collect and process payment information
+                    according to their privacy policy.</p>
 
                 <div class="contact-placeholder">
                     <p><strong data-i18n="privacyContact">Privacy inquiries:</strong> <span
