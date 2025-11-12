@@ -586,6 +586,42 @@ section {
     margin-bottom: 16px;
 }
 
+.legal-content h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-top: 24px;
+    margin-bottom: 12px;
+    padding-left: 0;
+}
+
+.legal-content ul {
+    margin: 16px 0 24px 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.legal-content ul li {
+    padding: 10px 0 10px 32px;
+    color: var(--text-light);
+    position: relative;
+    line-height: 1.7;
+    border-bottom: 1px solid var(--border);
+}
+
+.legal-content ul li:last-child {
+    border-bottom: none;
+}
+
+.legal-content ul li::before {
+    content: "•";
+    position: absolute;
+    left: 12px;
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 20px;
+}
+
 .legal-content p {
     color: var(--text-light);
     line-height: 1.8;
